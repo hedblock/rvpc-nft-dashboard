@@ -1,9 +1,9 @@
-import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { Avatar, Card, CardContent, Grid, Typography } from '@mui/material';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
-export default ({numTokensMinted, ...props}) => {
-
+const MintCounter = ({numTokensMinted, ...props}) => {
   return (
     <Card
       sx={{ height: '100%' }}
@@ -70,3 +70,5 @@ export default ({numTokensMinted, ...props}) => {
     </Card>
   )
 };
+
+export default MintCounter;

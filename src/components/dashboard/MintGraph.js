@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import 'chartjs-adapter-moment';
 import { 
@@ -18,7 +18,7 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useMinMaxMints, useMints } from 'src/hooks/moralisHooks';
 import { round, ellipsize } from 'src/utils/display';
 
-export default (props) => {
+const MintGraph = (props) => {
   const theme = useTheme();
 
   const { mints } = useMints();
@@ -134,3 +134,5 @@ export default (props) => {
     </Card>
   );
 };
+
+export default MintGraph;
