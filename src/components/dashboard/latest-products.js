@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { formatDistanceToNow, subHours } from 'date-fns';
 import { v4 as uuid } from 'uuid';
 import {
@@ -62,7 +63,7 @@ export const LatestProducts = (props) => (
           key={product.id}
         >
           <ListItemAvatar>
-            <img
+            <Image
               alt={product.name}
               src={product.imageUrl}
               style={{

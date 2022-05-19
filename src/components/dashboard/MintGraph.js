@@ -98,7 +98,7 @@ const MintGraph = (props) => {
             position: 'relative'
           }}
         >
-          <Grid container spacing={1}>
+          <Grid container spacing={1} sx={{paddingBottom: "24px"}}>
             <Grid item xs={12} md={4}>
               <Typography align='center' variant='h6'>Min: {minObj && round(minObj.get(gas_used_key), decimalPlace)} {gas_used_unit}</Typography>
             </Grid>

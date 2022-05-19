@@ -3,7 +3,7 @@ import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 
 const MAX_SUPPLY = 6000;
 
-export default ({numTokensMinted, ...props}) => {
+const MintProgress = ({numTokensMinted, ...props}) => {
 
   const progress = Math.floor(numTokensMinted / MAX_SUPPLY * 10000) / 100;
 
@@ -55,3 +55,5 @@ export default ({numTokensMinted, ...props}) => {
     </Card>
   );
 }
+
+export default MintProgress;

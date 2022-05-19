@@ -80,7 +80,7 @@ const orders = [
   }
 ];
 
-export default (props) => {
+const LatestMints = (props) => {
 
   const { mints } = useMints(8);
 
@@ -143,3 +143,5 @@ export default (props) => {
     </Card>
   );
 }
+
+export default LatestMints;

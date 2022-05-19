@@ -4,7 +4,7 @@ import PeopleIcon from '@mui/icons-material/PeopleOutlined';
 
 import { useNFTOwners } from 'src/hooks/moralisHooks';
 
-export default ({numOwners, ...props}) => {
+const UniqueOwners = ({numOwners, ...props}) => {
 
   const { owners } = useNFTOwners();
 
@@ -74,3 +74,5 @@ export default ({numOwners, ...props}) => {
   );
   
 }
+
+export default UniqueOwners;
