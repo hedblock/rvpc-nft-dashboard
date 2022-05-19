@@ -4,7 +4,7 @@
   "licence": "MIT",
   "version": "2.0.0",
   "private": false,
-  "homepage": ".",
+  "homepage": "https://mellifluous-boba-6da890.netlify.app",
   "scripts": {
     "dev": "next",
     "build": "next build",

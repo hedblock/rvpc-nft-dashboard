@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Head from 'next/head';
 import { Box, Container, Grid } from '@mui/material';
 import MintCounter from '../components/dashboard/MintCounter';
