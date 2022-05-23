@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardContent, Grid, Typography, Skeleton } from '@mui/material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import PeopleIcon from '@mui/icons-material/PeopleOutlined';
 
@@ -27,12 +27,18 @@ const UniqueOwners = ({numOwners, ...props}) => {
             >
               UNIQUE OWNERS
             </Typography>
-            <Typography
-              color="textPrimary"
-              variant="h4"
-            >
-              {numOwners}
-            </Typography>
+            {
+              numOwners ? (
+                <Typography
+                  color="textPrimary"
+                  variant="h4"
+                >
+                  {numOwners}
+                </Typography>
+              ) : (
+                <Skeleton variant="text" animation='wave' />
+              )
+            }
           </Grid>
           <Grid item>
             <Avatar

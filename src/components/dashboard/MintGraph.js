@@ -17,13 +17,19 @@ import {
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useMinMaxMints, useMints } from 'src/hooks/moralisHooks';
 import { round, ellipsize } from 'src/utils/display';
+import Copyable from '../Copyable';
+import MintGraphInterval from './MintGraphInterval';
+
+const intervals = [100, 500, 1000]
 
 const MintGraph = (props) => {
   const theme = useTheme();
 
-  const { mints } = useMints();
-  const { minObj, maxObj } = useMinMaxMints();
   const [isUsd, setIsUsd] = useState(true);
+  const [displayInterval, setDisplayInterval] = useState(intervals[0]);
+
+  const { mints } = useMints(displayInterval);
+  const { minObj, maxObj } = useMinMaxMints();
 
   const gas_used_key = isUsd ? 'gas_used_usd' : 'gas_used_eth';
   const gas_used_unit = isUsd ? 'USD' : 'ETH';
@@ -63,15 +69,13 @@ const MintGraph = (props) => {
     plugins: {
       legend: {
         display: false
-      },
-      labels: {
-        color: "rgb(255, 99, 132)",
-        font: {
-          family: "Montserrat" // Add your font here to change the font of your legend label
-        },
-        size: 100
-      },
+      }
     },
+    elements: {
+      point: {
+        radius: 0
+      }
+    }
   };
 
   return (
@@ -99,14 +103,29 @@ const MintGraph = (props) => {
           }}
         >
           <Grid container spacing={1} sx={{paddingBottom: "24px"}}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} xl={3}>
               <Typography align='center' variant='h6'>Min: {minObj && round(minObj.get(gas_used_key), decimalPlace)} {gas_used_unit}</Typography>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography align='center' variant='h6'>Min. Address: {minObj && ellipsize(minObj.get('to'), 8)}</Typography>
-            </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} xl={3}>
               <Typography align='center' variant='h6'>Max: {maxObj && round(maxObj.get(gas_used_key), decimalPlace)} {gas_used_unit}</Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+              <Typography align='center' variant='h6'>
+                Min. Address: <Copyable 
+                    displayText={minObj && ellipsize(minObj.get('to'), 8)}
+                    copyText={minObj && minObj.get('to')}
+                    sx={{fontSize: "1.125rem"}}
+                  /> 
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+              <Typography align='center' variant='h6'>
+                Max. Address: <Copyable 
+                    displayText={maxObj && ellipsize(maxObj.get('to'), 8)}
+                    copyText={maxObj && maxObj.get('to')}
+                    sx={{fontSize: "1.125rem"}}
+                  /> 
+              </Typography>
             </Grid>
           </Grid>
           <Line
@@ -119,17 +138,15 @@ const MintGraph = (props) => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'flex-end',
-          p: 2
+          justifyContent: 'center',
+          p: 4
         }}
       >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon fontSize="small" />}
-          size="small"
-        >
-          Overview
-        </Button>
+        <MintGraphInterval 
+          intervals={intervals}
+          displayInterval={displayInterval}
+          setDisplayInterval={setDisplayInterval}
+        />
       </Box>
     </Card>
   );

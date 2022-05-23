@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
@@ -16,6 +15,8 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import { useMints } from 'src/hooks/moralisHooks';
 import { ellipsize, round } from 'src/utils/display';
+
+import Copyable from '../Copyable';
 
 const orders = [
   {
@@ -82,7 +83,7 @@ const orders = [
 
 const LatestMints = (props) => {
 
-  const { mints } = useMints(8);
+  const { mints } = useMints(10);
 
   return (
     <Card {...props}>
@@ -92,13 +93,13 @@ const LatestMints = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
+                <TableCell align='center'>
                   Txn Hash
                 </TableCell>
-                <TableCell>
+                <TableCell align='center'>
                   Address
                 </TableCell>
-                <TableCell>
+                <TableCell align='center'>
                   Gas Used
                 </TableCell>
               </TableRow>
@@ -109,13 +110,21 @@ const LatestMints = (props) => {
                   hover
                   key={mint.txn_hash}
                 >
-                  <TableCell>
-                    {ellipsize(mint.txn_hash, 10)}
+                  <TableCell align='center'>
+                    <Copyable
+                      displayText={ellipsize(mint.txn_hash, 10)}
+                      copyText={mint.txn_hash}
+                      sx={{fontSize: 14}}
+                    />
                   </TableCell>
-                  <TableCell>
-                    {ellipsize(mint.address, 10)}
+                  <TableCell align='center'>
+                    <Copyable
+                      displayText={ellipsize(mint.address, 10)}
+                      copyText={mint.address}
+                      sx={{fontSize: 14}}
+                    />
                   </TableCell>
-                  <TableCell>
+                  <TableCell align='center'>
                     {round(mint.gas_used_eth, 5)} ETH
                   </TableCell>
                 </TableRow>
@@ -124,22 +133,6 @@ const LatestMints = (props) => {
           </Table>
         </Box>
       </PerfectScrollbar>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'flex-end',
-          p: 2
-        }}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon fontSize="small" />}
-          size="small"
-          variant="text"
-        >
-          View all
-        </Button>
-      </Box>
     </Card>
   );
 }

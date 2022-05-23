@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { Avatar, Card, CardContent, Grid, Typography } from '@mui/material';
+import { Avatar, Card, CardContent, Grid, Typography, Skeleton } from '@mui/material';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 
 const MintCounter = ({numTokensMinted, ...props}) => {
@@ -23,12 +23,18 @@ const MintCounter = ({numTokensMinted, ...props}) => {
             >
               Tokens Minted
             </Typography>
-            <Typography
-              color="textPrimary"
-              variant="h4"
-            >
-              {numTokensMinted}
-            </Typography>
+            {
+              numTokensMinted ? (
+                <Typography
+                  color="textPrimary"
+                  variant="h4"
+                >
+                  {numTokensMinted}
+                </Typography>
+              ) : (
+                <Skeleton variant="text" animation='wave' />
+              )
+            }
           </Grid>
           <Grid item>
             <Avatar

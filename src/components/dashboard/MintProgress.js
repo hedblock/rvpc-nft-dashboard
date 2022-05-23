@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardContent, Grid, LinearProgress, Typography } from '@mui/material';
+import { Avatar, Box, Card, CardContent, Grid, LinearProgress, Typography, Skeleton } from '@mui/material';
 import InsertChartIcon from '@mui/icons-material/InsertChartOutlined';
 
 const MAX_SUPPLY = 6000;
@@ -26,12 +26,18 @@ const MintProgress = ({numTokensMinted, ...props}) => {
             >
               MINT PROGRESS
             </Typography>
-            <Typography
-              color="textPrimary"
-              variant="h4"
-            >
-              {progress}% 
-            </Typography>
+            {
+              progress ? (
+                <Typography
+                  color="textPrimary"
+                  variant="h4"
+                >
+                  {progress}%
+                </Typography>
+              ) : (
+                <Skeleton variant="text" animation='wave' />
+              )
+            }
           </Grid>
           <Grid item>
             <Avatar
@@ -46,10 +52,16 @@ const MintProgress = ({numTokensMinted, ...props}) => {
           </Grid>
         </Grid>
         <Box sx={{ pt: 3 }}>
-          <LinearProgress
-            value={progress}
-            variant="determinate"
-          />
+          {
+            progress ? (
+              <LinearProgress
+                value={progress}
+                variant="determinate"
+              />
+            ) : (
+              <Skeleton variant="text" animation='wave' />
+            )
+          }
         </Box>
       </CardContent>
     </Card>

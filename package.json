@@ -24,6 +24,7 @@
     "@mui/styles": "^5.0.2",
     "chart.js": "^3.5.1",
     "chartjs-adapter-moment": "^1.0.0",
+    "clipboard-copy": "^4.0.1",
     "date-fns": "^2.25.0",
     "formik": "^2.1.5",
     "history": "^5.0.0",

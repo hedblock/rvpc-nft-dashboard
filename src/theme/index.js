@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
   breakpoints: {
@@ -193,6 +193,7 @@ export const theme = createTheme({
       contrastText: '#FFFFFF'
     },
     text: {
+      main: '#121828',
       primary: '#121828',
       secondary: '#65748B',
       disabled: 'rgba(55, 65, 81, 0.48)'

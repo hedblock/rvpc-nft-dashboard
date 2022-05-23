@@ -1,11 +1,13 @@
 import { useMoralisCloudFunction, useMoralisQuery } from "react-moralis"
 import moment from 'moment';
 
-const contractAddress = "0x76236B6f13F687D0bbeDbbCe0e30e9F07d071C1C";
-
 export const useMints = (limit=100) => {
-    const { data, error, isLoading } = useMoralisQuery("RVPCMints", query => 
-        query.descending("block_timestamp").limit(limit));
+
+
+    const { data, error, isLoading } = useMoralisQuery(
+        "RVPCMints", 
+        query => query.descending("block_timestamp").limit(limit),
+        [limit]);
     
     return { 
         mints: data.map(mint => ({
